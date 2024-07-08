@@ -83,7 +83,7 @@ A continuación se muestran capturas del frontend utilizando los microservicios:
 ![Dashboard](documentation/frontend_home.png)
 
 1. Realtime transactions: en esta sección de la interfaz se despliegan en tiempo real todas las transacciones.
-2. Notifications: en esta sección se despliegan en tiempo real solo las transacciones que tienen algun tipo de alerta (status = failure o amount > 1000). Cuando llega una nueva transacciones el título de esta sección se resalta automáticamente en rojo.
+2. Notifications: en esta sección se despliegan en tiempo real solo las transacciones que tienen algun tipo de alerta (status = failure o amount > 1000). Cuando llega una nueva transacción el título de esta sección se resalta automáticamente en rojo.
 3. Summary: en esta sección se despliegan en tiempo real las estadisticas por hora. Cada hora se establecen en 0 los valores para totalizar por hora.
 
 ### Pantalla de reportes
