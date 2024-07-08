@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.jcastellanos</groupId>
 	<artifactId>transaction-realtime-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>transaction-realtime-service</name>
 	<description>Transaction Realtime Service</description>
 	<url/>
