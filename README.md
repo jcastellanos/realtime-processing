@@ -92,4 +92,6 @@ Esta funcionalidad permite desplegar todas las transacciones del sistema. Se pue
 Esta funcionalidad deberia soportar páginado ya que no es correcto retornar todas las transacciones, pero por motivos de tiempos de entrega no fue posible realizarlo.
 
 ### Video
-Pendiente subir un video con el demo.
+En el siguiente enlace de youtube se puede ver un demo: 
+
+https://www.youtube.com/watch?v=mZJK2QwCXv0
