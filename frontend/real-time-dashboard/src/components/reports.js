@@ -9,8 +9,6 @@ const Reports = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //const response = await axios.get(`https://example.com/api/data?select=${selectValue}&input=${inputValue}`);
-      //setTransactions(response.data);
       var url = 'http://localhost:8083/report/transactions'
       if(selectValue != '') {
         url += `?filter=${selectValue}&value=${inputValue}`;
@@ -41,7 +39,7 @@ const Reports = () => {
             <Form.Label>Value</Form.Label>
             <Form.Control type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
           </Form.Group>
-          <Button variant="primary" type="submit">Submit</Button>
+          <Button variant="primary" type="submit">Filtrar</Button>
         </Form>
       </div>
       <div className="row">
