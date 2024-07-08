@@ -2,22 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Table } from 'react-bootstrap';
 
 const Realtime = () => {
-  const [stockData, setStockData] = useState([]);
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    // opening a connection to the server to begin receiving events from it
     const eventSource = new EventSource("http://localhost:8080/realtime/sse");
-    
-    // attaching a handler to receive message events
     eventSource.onmessage = (event) => {
       const result = JSON.parse(event.data);
-      //stockData.push(result);
-      // setStockData({ ...stockData });
-      setStockData((prevEvents) => [result, ...prevEvents]);
-      
-    };
-    
-    // terminating the connection on component unmount
+      setTransactions((prevEvents) => [result, ...prevEvents]);   
+    };    
     return () => eventSource.close();
   }, []);
 
@@ -35,13 +27,13 @@ const Realtime = () => {
             </tr>
         </thead>
         <tbody>
-            {stockData.map(artist => (
-            <tr key={artist.transaction_id}>
-                <td>{artist.txtime}</td>
-                <td>{artist.user}</td>
-                <td>{artist.amount}</td>
-                <td>{artist.status}</td>
-                <td>{artist.location}</td>
+            {transactions.map(tx => (
+            <tr key={tx.transaction_id}>
+                <td>{tx.txtime}</td>
+                <td>{tx.user}</td>
+                <td>{tx.amount}</td>
+                <td>{tx.status}</td>
+                <td>{tx.location}</td>
             </tr>
             ))}
         </tbody>

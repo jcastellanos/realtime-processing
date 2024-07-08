@@ -1,7 +1,4 @@
-// src/components/Home.js
 import React from 'react';
-import { Table } from 'react-bootstrap';
-import { AlarmFill, FileEarmarkText } from 'react-bootstrap-icons';
 import Realtime from './realtime';
 import Notifications from './notifications';
 import Summary from './summary';

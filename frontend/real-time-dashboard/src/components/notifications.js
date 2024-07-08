@@ -3,24 +3,19 @@ import { Table } from 'react-bootstrap';
 import './notifications.css';
 
 const Notifications = () => {
-  const [stockData, setStockData] = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    // opening a connection to the server to begin receiving events from it
     const eventSource = new EventSource("http://localhost:8081/notification/sse");
     
-    // attaching a handler to receive message events
     eventSource.onmessage = (event) => {
       const result = JSON.parse(event.data);
-      //stockData.push(result);
-      // setStockData({ ...stockData });
-      setStockData((prevEvents) => [result, ...prevEvents]);
+      setTransactions((prevEvents) => [result, ...prevEvents]);
       setUpdated(true);
       setTimeout(() => setUpdated(false), 1500);
     };
     
-    // terminating the connection on component unmount
     return () => eventSource.close();
   }, []);
 
@@ -38,13 +33,13 @@ const Notifications = () => {
             </tr>
         </thead>
         <tbody>
-            {stockData.map(artist => (
-            <tr key={artist.transaction_id}>
-                <td>{artist.txtime}</td>
-                <td>{artist.user}</td>
-                <td>{artist.amount}</td>
-                <td>{artist.status}</td>
-                <td>{artist.location}</td>
+            {transactions.map(tx => (
+            <tr key={tx.transaction_id}>
+                <td>{tx.txtime}</td>
+                <td>{tx.user}</td>
+                <td>{tx.amount}</td>
+                <td>{tx.status}</td>
+                <td>{tx.location}</td>
             </tr>
             ))}
         </tbody>
