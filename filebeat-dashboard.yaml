@@ -1,0 +1,31 @@
+filebeat.inputs:
+  - type: filestream
+    id: file-logs
+    paths:
+      - /Users/jcastellanos/payu/real-time-payment-dashboard/logs/transactions.log
+processors:
+  - dissect:
+      tokenizer: "Log: %{timestamp} - Transaction [%{transaction_id}] - User: %{user}, Amount: $%{amount}, Status: %{status}, Time: %{txtime}, Location: %{location}"
+      field: "message"
+      target_prefix: ""
+  - script:
+      lang: javascript
+      id: transform_log
+      source: >
+        function process(event) {
+          var timestamp = event.Get("timestamp");
+          var transaction_id = event.Get("transaction_id");
+          var user = event.Get("user");
+          var amount = event.Get("amount");
+          var status = event.Get("status");
+          var txtime = event.Get("txtime");
+          var location = event.Get("location");
+          
+          var transformed_log = "Log: " + timestamp + " , Transaction: " + transaction_id + ", User: " + user + ", Amount: " + amount + ", Status: " + status + ", Time: " + txtime + ", Location: " + location;
+          
+          event.Put("message", transformed_log);
+        }
+
+output.kafka:
+   hosts: ["localhost:9092"]
+   topic: "transactions"
