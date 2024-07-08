@@ -1,0 +1,7 @@
+.events-list {
+    transition: background-color 0.5s ease;
+  }
+  
+  .events-list.updated {
+    background-color: lightcoral;
+  }
